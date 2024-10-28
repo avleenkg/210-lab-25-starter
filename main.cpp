@@ -17,41 +17,43 @@ int main() {
     vector<string> vect;
     list<string> lists;
     set<string> sets;
+    auto vectdur = 0, listdur = 0, setdur = 0,
+        vecsort = 0, listsort = 0, setsort = -1,
+        vecinsert = 0, listinsert = 0, setinsert = 0;
 
     cout << "Operation\tVector\tList\tSet\n";
 
     //reading string elements-------race 1
     auto start = high_resolution_clock::now();
-    cout << "READING:\n";
     while (getline(fin, line)){
         auto readS = high_resolution_clock::now();
         vect.push_back(line);
         auto readE = high_resolution_clock::now();
-        auto duration = duration_cast<milliseconds>(readE - readS);
-        
-        start = high_resolution_clock::now();
+        vectdur += duration_cast<milliseconds>(readE - readS).count();
+
+        readS = high_resolution_clock::now();
         lists.push_back(line);
-        end = high_resolution_clock::now();
-        duration = duration_cast<milliseconds>(end - start);
-        start = high_resolution_clock::now();
+        readE = high_resolution_clock::now();
+        listdur += duration_cast<milliseconds>(readE- readS).count();
+
+        readS = high_resolution_clock::now();
         sets.insert(line);
-        end = high_resolution_clock::now();
-        duration = duration_cast<milliseconds>(end - start);
+        readE = high_resolution_clock::now();
+        setdur += duration_cast<milliseconds>(readE - readS).count();
     }
-    cout << "Time taken: " << duration.count() << " milliseconds\n";
-
-
+    cout << "Read\t" << vectdur << "\t" << listdur << "\t" << setdur << endl;
 
     //sorting string elements-------race 2
     //set is sorted by default
-    cout << "SORTING:\n";
-    start = high_resolution_clock::now();
+    auto sorts = high_resolution_clock::now();
     lists.sort();
-    end = high_resolution_clock::now();
-    start = high_resolution_clock::now();
+    auto sortend = high_resolution_clock::now();
+    listsort += duration_cast<milliseconds>(sortend - sorts).count();
+
+    sorts = high_resolution_clock::now();
     sort(vect.begin(), vect.end());
-    end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
+    sortend = high_resolution_clock::now();
+    vecsort = duration_cast<milliseconds>(end - start);
     cout << "Time taken: " << duration.count() << " milliseconds\n";
     
     //inserting "TESTCODE"--------race 3
