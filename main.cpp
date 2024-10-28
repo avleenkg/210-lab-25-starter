@@ -17,7 +17,7 @@ int main() {
     vector<string> vect;
     list<string> lists;
     set<string> sets;
-    auto vectdur = 0, listdur = 0, setdur = 0,
+    int vectdur = 0, listdur = 0, setdur = 0,
         vecsort = 0, listsort = 0, setsort = -1,
         vecinsert = 0, listinsert = 0, setinsert = 0;
 
