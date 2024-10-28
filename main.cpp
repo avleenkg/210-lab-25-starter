@@ -20,13 +20,17 @@ int main() {
 
     //reading string elements-------race 1
     cout << "READING:\n";
-    auto start = high_resolution_clock::now();
     while (getline(fin, line)){
+        auto start = high_resolution_clock::now();
         vect.push_back(line);
+        auto end = high_resolution_clock::now();
+        start = high_resolution_clock::now();
         lists.push_back(line);
+        end = high_resolution_clock::now();
+        start = high_resolution_clock::now();
         sets.insert(line);
+        end = high_resolution_clock::now();
     }
-    auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
     cout << "Time taken: " << duration.count() << " milliseconds\n";
 
@@ -37,6 +41,8 @@ int main() {
     cout << "SORTING:\n";
     start = high_resolution_clock::now();
     lists.sort();
+    end = high_resolution_clock::now();
+    start = high_resolution_clock::now();
     sort(vect.begin(), vect.end());
     end = high_resolution_clock::now();
     duration = duration_cast<milliseconds>(end - start);
@@ -44,14 +50,18 @@ int main() {
     
     //inserting "TESTCODE"--------race 3
     cout << "INSERTING:\n";
-    start = high_resolution_clock::now();
     int vectorindex = vect.size() / 2;
     int listindex = lists.size() / 2;
     //set will automatically insert into correct index
 
+    start = high_resolution_clock::now();
     vect.insert(vect.begin() + vectorindex, "TESTCODE");
+    end = high_resolution_clock::now();
     auto i = lists.begin(); 
+    start = high_resolution_clock::now();
     advance(i, listindex);
+    end = high_resolution_clock::now();
+    start = high_resolution_clock::now();
     sets.insert("TESTCODE");
     end = high_resolution_clock::now();
     duration = duration_cast<milliseconds>(end - start);
