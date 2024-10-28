@@ -1,10 +1,19 @@
 //lab 25 ds races
 
 #include <iostream>
+#include <set>
+#include <list>
+#include <vector>
+#include <fstream>
+#include <string>
 #include <chrono>
 using namespace std;
 
+
 int main() {
+    ifstream fin("codes.txt");
+    string line;
+    while ()
     
 
     return 0;
