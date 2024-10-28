@@ -24,7 +24,6 @@ int main() {
     cout << "Operation\tVector\tList\tSet\n";
 
     //reading string elements-------race 1
-    auto start = high_resolution_clock::now();
     while (getline(fin, line)){
         auto readS = high_resolution_clock::now();
         vect.push_back(line);
@@ -41,7 +40,7 @@ int main() {
         readE = high_resolution_clock::now();
         setdur += duration_cast<milliseconds>(readE - readS).count();
     }
-    cout << "Read\t" << vectdur << "\t" << listdur << "\t" << setdur << endl;
+    cout << "Read\t\t" << vectdur << "\t" << listdur << "\t" << setdur << endl;
 
     //sorting string elements-------race 2
     //set is sorted by default
@@ -53,27 +52,28 @@ int main() {
     sorts = high_resolution_clock::now();
     sort(vect.begin(), vect.end());
     sortend = high_resolution_clock::now();
-    vecsort = duration_cast<milliseconds>(end - start);
-    cout << "Time taken: " << duration.count() << " milliseconds\n";
+    vecsort += duration_cast<milliseconds>(sortend - sorts).count();
+    cout << "Sort\t\t" << vecsort << "\t" << listsort << "\t" << setsort << endl;
     
     //inserting "TESTCODE"--------race 3
-    cout << "INSERTING:\n";
+    auto start = high_resolution_clock::now();
     int vectorindex = vect.size() / 2;
-    int listindex = lists.size() / 2;
-    //set will automatically insert into correct index
+    vect.insert(vect.begin() + vectorindex, "TESTCODE");
+    auto end = high_resolution_clock::now();
+    vecinsert += duration_cast<milliseconds>(end - start).count();
 
     start = high_resolution_clock::now();
-    vect.insert(vect.begin() + vectorindex, "TESTCODE");
-    end = high_resolution_clock::now();
+    int listindex = lists.size() / 2;
     auto i = lists.begin(); 
-    start = high_resolution_clock::now();
     advance(i, listindex);
     end = high_resolution_clock::now();
+    listinsert += duration_cast<milliseconds>(end - start).count();
+
     start = high_resolution_clock::now();
     sets.insert("TESTCODE");
     end = high_resolution_clock::now();
-    duration = duration_cast<milliseconds>(end - start);
-    cout << "Time taken: " << duration.count() << " milliseconds\n";
+    setinsert += duration_cast<milliseconds>(end - start).count();
+    cout << "Insert\t\t" << vecinsert << "\t" << listinsert << "\t" << setinsert << endl;
 
     return 0;
 }
