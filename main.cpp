@@ -18,20 +18,26 @@ int main() {
     list<string> lists;
     set<string> sets;
 
+    cout << "Operation\tVector\tList\tSet\n";
+
     //reading string elements-------race 1
+    auto start = high_resolution_clock::now();
     cout << "READING:\n";
     while (getline(fin, line)){
-        auto start = high_resolution_clock::now();
+        auto readS = high_resolution_clock::now();
         vect.push_back(line);
-        auto end = high_resolution_clock::now();
+        auto readE = high_resolution_clock::now();
+        auto duration = duration_cast<milliseconds>(readE - readS);
+        
         start = high_resolution_clock::now();
         lists.push_back(line);
         end = high_resolution_clock::now();
+        duration = duration_cast<milliseconds>(end - start);
         start = high_resolution_clock::now();
         sets.insert(line);
         end = high_resolution_clock::now();
+        duration = duration_cast<milliseconds>(end - start);
     }
-    auto duration = duration_cast<milliseconds>(end - start);
     cout << "Time taken: " << duration.count() << " milliseconds\n";
 
 
