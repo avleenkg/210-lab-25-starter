@@ -40,7 +40,7 @@ int main() {
         readE = high_resolution_clock::now();
         setdur += duration_cast<milliseconds>(readE - readS).count();
     }
-    cout << "Read\t\t" << vectdur << "\t" << listdur << "\t" << setdur << endl;
+    cout << "Read\t\t" << vectdur << "\t" << listdur << "\t" << setdur << endl; //my read is outputting 0 but im not sure why
 
     //sorting string elements-------race 2
     //set is sorted by default
